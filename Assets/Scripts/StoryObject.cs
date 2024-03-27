@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -17,10 +18,14 @@ public class StoryObject : ScriptableObject
     [Header("Next Story Settings")]
     public StoryObject NextStory;
     public bool CanClickToNext = true;
-    public float NextStoryInSeconds = 2;
     public bool NextAutomatically = false;
+    public float NextStoryInSeconds = 2;
+    public bool WaitForFinishedTalking = true;
 
     [Header("Video")]
     [InspectorName("PlayVideo (will next on end)")] public bool PlayVideo = false;
     public VideoClip VideoClip;
+
+    [Header("Sounds")]
+    public AudioClip Music;
 }

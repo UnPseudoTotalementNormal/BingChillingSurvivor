@@ -24,3 +24,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8430fc8fcb117864b84505d48db4e468, type: 3}
   - {fileID: 8300000, guid: 1d0b489b8ac123e449df1c6a741ff461, type: 3}
   - {fileID: 8300000, guid: 2c5c7536cffd08540a600284d25c19c1, type: 3}
+  CharacterSprite: {fileID: 21300000, guid: f06ea22a3b213964697aa0e92836eb84, type: 3}

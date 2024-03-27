@@ -17,3 +17,12 @@ MonoBehaviour:
     ejejejefoefiefj eeee taiwan is not a real country +1000000 social credit, ching
     chong hanji, [SFX=bingchilling, 0.5, Ramble, Ramble]bing chilling[SFX=bingchilling,
     0.5, Ramble, Ramble] bing chilling '
+  HasChoices: 0
+  NextStory: {fileID: 11400000, guid: 9f29d82eb0a52c84b800fb23151f3172, type: 2}
+  CanClickToNext: 1
+  NextStoryInSeconds: 2
+  NextAutomatically: 0
+  WaitForFinishedTalking: 1
+  PlayVideo: 0
+  VideoClip: {fileID: 0}
+  Music: {fileID: 0}

@@ -1,9 +1,15 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StoryManager : MonoBehaviour
 {
     public static StoryManager Instance;
     [SerializeField] private StoryObject _currentObject; public StoryObject CurrentObject {  get { return _currentObject; } }
+
+    [SerializeField] private Image _characterImage;
+
+    private Coroutine _goToNextAutomaticallyCoroutine;
 
     private void Awake()
     {
@@ -12,7 +18,66 @@ public class StoryManager : MonoBehaviour
 
     private void Start()
     {
+        ReadStoryObject();
+        InputManager.Instance.OnClickEvent.AddListener(OnPlayerClick);
+    }
+
+    public void OnPlayerClick()
+    {
+        if (_currentObject.CanClickToNext && TextBoxManager.Instance.FinishedTalking)
+        {
+            GoToNextStoryObject();
+        }
+    }
+
+    public void ReadStoryObject()
+    {
         TextBoxManager.Instance.SetText(_currentObject.StoryText, _currentObject.Character.FirstName);
+        if (_currentObject.Character.CharacterSprite) _characterImage.sprite = _currentObject.Character.CharacterSprite;
+
+        if (_currentObject.PlayVideo && _currentObject.VideoClip) //video
+        {
+            VideoManager.Instance.PlayVideo(_currentObject.VideoClip);
+            VideoManager.Instance.FinishedPlayingEvent.AddListener(NextOnVideoEnd);
+        }
+        else
+        {
+            if (_currentObject.NextAutomatically)
+            {
+                _goToNextAutomaticallyCoroutine = StartCoroutine(GoToNextAutomatically());
+            }
+        }
+    }
+
+    private IEnumerator GoToNextAutomatically()
+    {
+        if (_currentObject.WaitForFinishedTalking)
+        {
+            while (!TextBoxManager.Instance.FinishedTalking)
+            {
+                yield return null;
+            }
+        }
+        
+        yield return new WaitForSeconds(_currentObject.NextStoryInSeconds);
+
+        _goToNextAutomaticallyCoroutine = null;
+        GoToNextStoryObject();
+        yield return null;
+    }
+
+    public void NextOnVideoEnd()
+    {
+        VideoManager.Instance.FinishedPlayingEvent.RemoveListener(NextOnVideoEnd);
+        GoToNextStoryObject();
+    }
+
+    public void GoToNextStoryObject()
+    {
+        if (_goToNextAutomaticallyCoroutine != null) StopCoroutine(_goToNextAutomaticallyCoroutine);
+
+        _currentObject = _currentObject.NextStory;
+        ReadStoryObject();
     }
     
     public void ReceiveOrder(string order)
@@ -44,6 +109,15 @@ public class StoryManager : MonoBehaviour
             order = RemoveAllArgumentsInOrder(order);
 
             SoundManager.Instance.PlayMusicAtPath("MUSIC/" + order, volume);
+        }
+        if (order.Contains("STORYOBJECT="))
+        {
+            order = order.Replace("STORYOBJECT=", "");
+
+            order = RemoveAllArgumentsInOrder(order);
+
+            _currentObject = Resources.Load<StoryObject>("Story/Objects/" + order);
+            ReadStoryObject();
         }
     }
 

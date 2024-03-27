@@ -17,6 +17,8 @@ public class TextBoxManager : MonoBehaviour
     [SerializeField] private float _timeBeforeNextChar = 0.1f;
     private float _textTimer = 0;
 
+    private bool _finishedTalking = false; public bool FinishedTalking { get { return _finishedTalking; } }
+
     private void Awake()
     {
         Instance = this;
@@ -25,8 +27,10 @@ public class TextBoxManager : MonoBehaviour
     private void Update()
     {
         _box.SetActive(!(_currentMainText == ""));
+        _finishedTalking = true;
         if (_currentMainTextIndex < _currentMainText.Length)
         {
+            _finishedTalking = false;
             _textTimer += Time.deltaTime;
 
             if (_textTimer >= _timeBeforeNextChar)

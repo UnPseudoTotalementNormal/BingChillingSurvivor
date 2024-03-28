@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -11,9 +11,12 @@ public class StoryObject : ScriptableObject
     [Header("Text")]
     [TextArea(15, 20)]
     public string StoryText = "";
+    public bool CanBeSkipped = true;
 
     [Header("Choices")]
     public bool HasChoices = false;
+    public StoryObject[] Choices;
+    public string[] ChoicesText;
 
     [Header("Next Story Settings")]
     public StoryObject NextStory;

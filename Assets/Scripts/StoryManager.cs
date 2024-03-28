@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,10 +7,14 @@ public class StoryManager : MonoBehaviour
 {
     public static StoryManager Instance;
     [SerializeField] private StoryObject _currentObject; public StoryObject CurrentObject {  get { return _currentObject; } }
+    [SerializeField] private GameObject _buttonPrefab;
 
+    [SerializeField] private Transform _choicesParent;
     [SerializeField] private Image _characterImage;
 
     private Coroutine _goToNextAutomaticallyCoroutine;
+
+    private bool _choiceDisplayed = false;
 
     private void Awake()
     {
@@ -22,16 +27,58 @@ public class StoryManager : MonoBehaviour
         InputManager.Instance.OnClickEvent.AddListener(OnPlayerClick);
     }
 
+    private void Update()
+    {
+        if (!_currentObject)
+        {
+            Debug.LogError("There's no current Story object !");
+            return;
+        }
+
+        if (_currentObject.HasChoices && !_choiceDisplayed && TextBoxManager.Instance.FinishedTalking)
+        {
+            DisplayChoice();
+        }
+    }
+
+    private void DisplayChoice()
+    {
+        _choiceDisplayed = true;
+        for (int i = 0; i < _currentObject.Choices.Length; i++)
+        {
+            GameObject choiceButton = Instantiate(_buttonPrefab, _choicesParent);
+            StoryObject newStory = _currentObject.Choices[i];
+            choiceButton.GetComponent<Button>().onClick.AddListener(delegate { GoToStoryObject(newStory); } );
+            choiceButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _currentObject.ChoicesText[i];
+        }
+    }
+
+    private void DestroyChoices()
+    {
+        for (int i = 0; i < _choicesParent.childCount; i++)
+        {
+            Destroy(_choicesParent.GetChild(i).gameObject);
+        }
+    }
+
     public void OnPlayerClick()
     {
-        if (_currentObject.CanClickToNext && TextBoxManager.Instance.FinishedTalking)
+        if (TextBoxManager.Instance.FinishedTalking)
         {
-            GoToNextStoryObject();
+            if (_currentObject.CanClickToNext && !_currentObject.HasChoices)
+            {
+                GoToNextStoryObject();
+            }
+        }
+        else
+        {
+            TextBoxManager.Instance.FinishTalking();
         }
     }
 
     public void ReadStoryObject()
     {
+        _choiceDisplayed = false;
         TextBoxManager.Instance.SetText(_currentObject.StoryText, _currentObject.Character.FirstName);
         if (_currentObject.Character.CharacterSprite) _characterImage.sprite = _currentObject.Character.CharacterSprite;
 
@@ -45,6 +92,10 @@ public class StoryManager : MonoBehaviour
             if (_currentObject.NextAutomatically)
             {
                 _goToNextAutomaticallyCoroutine = StartCoroutine(GoToNextAutomatically());
+            }
+
+            if (_currentObject.HasChoices)
+            {
             }
         }
     }
@@ -72,8 +123,18 @@ public class StoryManager : MonoBehaviour
         GoToNextStoryObject();
     }
 
+    public void GoToStoryObject(StoryObject story)
+    {
+        DestroyChoices();
+        if (_goToNextAutomaticallyCoroutine != null) StopCoroutine(_goToNextAutomaticallyCoroutine);
+
+        _currentObject = story;
+        ReadStoryObject();
+    }
+
     public void GoToNextStoryObject()
     {
+        DestroyChoices();
         if (_goToNextAutomaticallyCoroutine != null) StopCoroutine(_goToNextAutomaticallyCoroutine);
 
         _currentObject = _currentObject.NextStory;
@@ -99,6 +160,12 @@ public class StoryManager : MonoBehaviour
 
             if (stopCategory != "N/A") SoundManager.Instance.StopAllFromCategory(stopCategory);
             SoundManager.Instance.PlayAtPath("SFX/" + order, volume, 0, delay, category);
+        }
+        if (order.Contains("SFXSTOP=")) //CATEGORY
+        {
+            order = order.Replace("SFXSTOP=", "");
+            order = RemoveAllArgumentsInOrder(order);
+            SoundManager.Instance.StopAllFromCategory(order);
         }
         if (order.Contains("MUSIC=")) //PATH, VOLUME
         {

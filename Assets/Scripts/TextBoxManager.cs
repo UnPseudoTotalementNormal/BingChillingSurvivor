@@ -27,6 +27,11 @@ public class TextBoxManager : MonoBehaviour
     private void Update()
     {
         _box.SetActive(!(_currentMainText == ""));
+        UpdateTalk(false);
+    }
+
+    private void UpdateTalk(bool skip)
+    {
         _finishedTalking = true;
         if (_currentMainTextIndex < _currentMainText.Length)
         {
@@ -35,7 +40,7 @@ public class TextBoxManager : MonoBehaviour
 
             if (_textTimer >= _timeBeforeNextChar)
             {
-                if (_currentMainText[_currentMainTextIndex] == '[')
+                if (_currentMainText[_currentMainTextIndex] == '[' || _currentMainText[_currentMainTextIndex] == '<')
                 {
                     string order = "";
                     for (int i = _currentMainTextIndex + 1; i < _currentMainText.Length; i++)
@@ -43,12 +48,20 @@ public class TextBoxManager : MonoBehaviour
                         if (_currentMainText[i] == ']')
                         {
                             SendOrder(order);
-                            _currentMainTextIndex = i+1;
+                            _currentMainTextIndex = i + 1;
                             break;
                         }
                         else
                         {
-                            order += _currentMainText[i];
+                            if (_currentMainText[i] == '>')
+                            {
+                                _currentMainTextIndex = i + 1;
+                                break;
+                            }
+                            else
+                            {
+                                order += _currentMainText[i];
+                            }
                         }
                     }
                 }
@@ -70,6 +83,14 @@ public class TextBoxManager : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    public void FinishTalking()
+    {
+        while(!_finishedTalking)
+        {
+            UpdateTalk(true);
         }
     }
 

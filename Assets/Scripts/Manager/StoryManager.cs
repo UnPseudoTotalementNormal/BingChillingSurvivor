@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,8 @@ public class StoryManager : MonoBehaviour
     private Coroutine _goToNextAutomaticallyCoroutine;
 
     private bool _choiceDisplayed = false;
+
+    public Dictionary<string, int> StoryItems = new Dictionary<string, int>(); 
 
     private void Awake()
     {
@@ -46,11 +49,64 @@ public class StoryManager : MonoBehaviour
         _choiceDisplayed = true;
         for (int i = 0; i < _currentObject.Choices.Length; i++)
         {
-            GameObject choiceButton = Instantiate(_buttonPrefab, _choicesParent);
             StoryObject newStory = _currentObject.Choices[i];
-            choiceButton.GetComponent<Button>().onClick.AddListener(delegate { GoToStoryObject(newStory); } );
-            choiceButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _currentObject.ChoicesText[i];
+            if (newStory)
+            {
+                GameObject choiceButton = Instantiate(_buttonPrefab, _choicesParent);
+                if (ReadChoiceConditions(i))
+                {
+                    choiceButton.GetComponent<Button>().onClick.AddListener(delegate { GoToStoryObject(newStory); });
+                    if (_currentObject.ChoicesItemChange.Count > i && _currentObject.ChoicesItemChange[i].Items.Count > 0)
+                    {
+                        List<string> choiceItems = _currentObject.ChoicesItemChange[i].Items;
+                        choiceButton.GetComponent<Button>().onClick.AddListener(delegate { ReadStoryItems(choiceItems); });
+                    }
+                }
+                choiceButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _currentObject.ChoicesText[i];
+            }
         }
+    }
+
+    private bool ReadChoiceConditions(int index) //ITEM, OPERATOR, QUANTITY
+    {
+        bool canChoose = true;
+        List<StoryConditionWrapper> storyConditions = _currentObject.ChoicesConditions; 
+
+        if (index < storyConditions.Count && storyConditions[index].conditions.Count > 0)
+        {
+            List<string> conditions = storyConditions[index].conditions;
+            for (int i = 0; i < conditions.Count;i++)
+            {
+                string currentCondition = conditions[i];
+                string conditionOperator = GetFirstArgumentInOrder(currentCondition); currentCondition = RemoveFirstArgumentInOrder(currentCondition);
+                int conditionQuantity = int.Parse(GetFirstArgumentInOrder(currentCondition)); currentCondition = RemoveFirstArgumentInOrder(currentCondition);
+
+                int itemQuantity = 0;
+                if (StoryItems.ContainsKey(currentCondition)) itemQuantity = StoryItems[currentCondition];
+
+
+                switch (conditionOperator)
+                {
+                    case "<":
+                        if (!(itemQuantity < conditionQuantity)) canChoose = false;
+                        break;
+                    case ">":
+                        if (!(itemQuantity > conditionQuantity)) canChoose = false;
+                        break;
+                    case "<=":
+                        if (!(itemQuantity <= conditionQuantity)) canChoose = false;
+                        break;
+                    case ">=":
+                        if (!(itemQuantity >= conditionQuantity)) canChoose = false;
+                        break;
+                    case "==":
+                        if (!(itemQuantity == conditionQuantity)) canChoose = false;
+                        break;
+                }
+            }
+        }
+
+        return canChoose;
     }
 
     private void DestroyChoices()
@@ -81,6 +137,7 @@ public class StoryManager : MonoBehaviour
         _choiceDisplayed = false;
         TextBoxManager.Instance.SetText(_currentObject.StoryText, _currentObject.Character.FirstName);
         if (_currentObject.Character.CharacterSprite) _characterImage.sprite = _currentObject.Character.CharacterSprite;
+        ReadStoryItems(_currentObject.Items);
 
         if (_currentObject.PlayVideo && _currentObject.VideoClip) //video
         {
@@ -96,6 +153,41 @@ public class StoryManager : MonoBehaviour
 
             if (_currentObject.HasChoices)
             {
+            }
+        }
+    }
+
+    private void ReadStoryItems(List<string> items) //ITEM, OPERATOR, QUANTITY
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            string currentItem = items[i];
+            string itemOperator = GetFirstArgumentInOrder(currentItem); currentItem = RemoveFirstArgumentInOrder(currentItem);
+            int itemQuantity = int.Parse(GetFirstArgumentInOrder(currentItem)); currentItem = RemoveFirstArgumentInOrder(currentItem);
+
+            if (!StoryItems.ContainsKey(currentItem))
+            {
+                StoryItems[currentItem] = 0;
+            }
+
+            switch (itemOperator)
+            {
+                case "+":
+                    ItemFeedbackManager.Instance.SendFeedback(currentItem + ": " + (StoryItems[currentItem] + itemQuantity));
+                    StoryItems[currentItem] += itemQuantity;
+                    break;
+                case "-":
+                    ItemFeedbackManager.Instance.SendFeedback(currentItem + ": " + (StoryItems[currentItem] - itemQuantity));
+                    StoryItems[currentItem] -= itemQuantity;
+                    break;
+                case "*":
+                    ItemFeedbackManager.Instance.SendFeedback(currentItem + ": " + (StoryItems[currentItem] * itemQuantity));
+                    StoryItems[currentItem] *= itemQuantity;
+                    break;
+                case "/":
+                    ItemFeedbackManager.Instance.SendFeedback(currentItem + ": " + (StoryItems[currentItem] / itemQuantity));
+                    StoryItems[currentItem] /= itemQuantity;
+                    break;
             }
         }
     }

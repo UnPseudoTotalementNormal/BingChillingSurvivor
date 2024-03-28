@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ChoiceTest
   m_EditorClassIdentifier: 
   Character: {fileID: 11400000, guid: e9d19d76e3be8344fb7be6475c696264, type: 2}
+  Items: []
   StoryText: Make a choice please :)
   CanBeSkipped: 1
   HasChoices: 1
@@ -20,8 +21,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f29d82eb0a52c84b800fb23151f3172, type: 2}
   - {fileID: 11400000, guid: 206c0a58d47eb384cb5b82d01494ee24, type: 2}
   ChoicesText:
-  - Savior help me
-  - idk return
+  - Savior help me (need 1 bingchilling)
+  - idk return (+1 bingchilling)
+  ChoicesConditions:
+  - conditions:
+    - bingchilling, >, 0
+  ChoicesItemChange:
+  - Items: []
+  - Items:
+    - bingchilling, +, 1
   NextStory: {fileID: 11400000, guid: 9f29d82eb0a52c84b800fb23151f3172, type: 2}
   CanClickToNext: 1
   NextAutomatically: 0

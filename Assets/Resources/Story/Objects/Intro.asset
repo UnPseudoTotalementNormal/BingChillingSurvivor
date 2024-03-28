@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Intro
   m_EditorClassIdentifier: 
   Character: {fileID: 11400000, guid: e9d19d76e3be8344fb7be6475c696264, type: 2}
+  Items: []
   StoryText: zao eeee bong [SFX=bingchilling, 0.5, Ramble, Ramble]bing chilling ejejejefoefiefj
     eeee taiwan is not a real country +1000000 social credit, ching chong hanji,
     [SFX=bingchilling, 0.5, Ramble, Ramble]bing chilling
@@ -20,6 +21,8 @@ MonoBehaviour:
   HasChoices: 0
   Choices: []
   ChoicesText: []
+  ChoicesConditions: []
+  ChoicesItemChange: []
   NextStory: {fileID: 11400000, guid: 356a3ee4dd5db0d41ad738702de60de3, type: 2}
   CanClickToNext: 1
   NextAutomatically: 0

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SaviorTalk
   m_EditorClassIdentifier: 
   Character: {fileID: 11400000, guid: 6780526796ff106448241bdcb96e908f, type: 2}
+  Items: []
   StoryText: "Taiwan est un v\xE9ritable pays pour plusieurs raisons fondamentales.
     Tout d'abord, Taiwan poss\xE8de tous les attributs d'un \xC9tat souverain, y
     compris un territoire d\xE9fini, une population, un gouvernement et la capacit\xE9
@@ -30,7 +31,9 @@ MonoBehaviour:
   HasChoices: 0
   Choices: []
   ChoicesText: []
-  NextStory: {fileID: 0}
+  ChoicesConditions: []
+  ChoicesItemChange: []
+  NextStory: {fileID: 11400000, guid: 0285968d80a4c514baa5d54075892419, type: 2}
   CanClickToNext: 1
   NextAutomatically: 0
   NextStoryInSeconds: 2

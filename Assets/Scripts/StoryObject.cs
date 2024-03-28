@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
@@ -8,6 +9,9 @@ public class StoryObject : ScriptableObject
     [Header("Character Settings")]
     public StoryCharacter Character;
 
+    [Header("Items")]
+    public List<string> Items = new List<string>();
+
     [Header("Text")]
     [TextArea(15, 20)]
     public string StoryText = "";
@@ -17,6 +21,8 @@ public class StoryObject : ScriptableObject
     public bool HasChoices = false;
     public StoryObject[] Choices;
     public string[] ChoicesText;
+    public List<StoryConditionWrapper> ChoicesConditions = new List<StoryConditionWrapper>();
+    public List<StoryItemWrapper> ChoicesItemChange = new List<StoryItemWrapper>();
 
     [Header("Next Story Settings")]
     public StoryObject NextStory;

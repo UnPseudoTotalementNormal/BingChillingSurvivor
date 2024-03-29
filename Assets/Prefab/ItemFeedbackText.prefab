@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7807710233568429642}
   - component: {fileID: 5962465780761211383}
+  - component: {fileID: 2545822115684763439}
   - component: {fileID: 5164409557417558152}
   m_Layer: 5
   m_Name: ItemFeedbackText
@@ -45,6 +46,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4636142456257158735}
   m_CullTransparentMesh: 1
+--- !u!114 &2545822115684763439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4636142456257158735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7219796930066084db1fefcc1c037adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5164409557417558152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +78,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +1 bing chilling
+  m_text: +1 social credit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6981e7fee3de4694bb7eb747e99a0cab, type: 2}
   m_sharedMaterial: {fileID: -8009795784878958754, guid: 6981e7fee3de4694bb7eb747e99a0cab, type: 2}

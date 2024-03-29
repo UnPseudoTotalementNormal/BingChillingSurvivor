@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class ItemFeedbackManager : MonoBehaviour
@@ -13,6 +14,11 @@ public class ItemFeedbackManager : MonoBehaviour
 
     public void SendFeedback(string feedbackText)
     {
-        print(feedbackText);
+        if (_itemFeedbackText)
+        {
+            GameObject newFeedback = Instantiate(_itemFeedbackText, transform.position + (-transform.up * 2), Quaternion.identity, transform);
+            newFeedback.GetComponent<TextMeshProUGUI>().text = feedbackText;
+            Destroy(newFeedback, 2);
+        }
     }
 }

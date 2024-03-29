@@ -20,16 +20,18 @@ MonoBehaviour:
   Choices:
   - {fileID: 11400000, guid: 9f29d82eb0a52c84b800fb23151f3172, type: 2}
   - {fileID: 11400000, guid: 206c0a58d47eb384cb5b82d01494ee24, type: 2}
+  - {fileID: 11400000, guid: 4e12c846b24e2584c81d0f2b4dea78e4, type: 2}
   ChoicesText:
-  - Savior help me (need 1 bingchilling)
-  - idk return (+1 bingchilling)
+  - Savior help me
+  - china good :)
+  - I love Tawain ! it's my favorite country !!!
   ChoicesConditions:
   - conditions:
-    - bingchilling, >, 0
+    - social credit, >, 0
   ChoicesItemChange:
   - Items: []
   - Items:
-    - bingchilling, +, 1
+    - social credit, +, 1
   NextStory: {fileID: 11400000, guid: 9f29d82eb0a52c84b800fb23151f3172, type: 2}
   CanClickToNext: 1
   NextAutomatically: 0

@@ -53,7 +53,8 @@ public class StoryManager : MonoBehaviour
             if (newStory)
             {
                 GameObject choiceButton = Instantiate(_buttonPrefab, _choicesParent);
-                if (ReadChoiceConditions(i))
+                bool canClick = ReadChoiceConditions(i);
+                if (canClick)
                 {
                     choiceButton.GetComponent<Button>().onClick.AddListener(delegate { GoToStoryObject(newStory); });
                     if (_currentObject.ChoicesItemChange.Count > i && _currentObject.ChoicesItemChange[i].Items.Count > 0)
@@ -62,7 +63,16 @@ public class StoryManager : MonoBehaviour
                         choiceButton.GetComponent<Button>().onClick.AddListener(delegate { ReadStoryItems(choiceItems); });
                     }
                 }
-                choiceButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _currentObject.ChoicesText[i];
+                TextMeshProUGUI buttonText = choiceButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                if (canClick)
+                {
+                    buttonText.text = _currentObject.ChoicesText[i];
+                }
+                else
+                {
+                    buttonText.text = _currentObject.ChoicesText[i] + " (bloqué)";
+                    choiceButton.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f);
+                }
             }
         }
     }

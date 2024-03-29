@@ -17,9 +17,12 @@ public class SoundManager : MonoBehaviour
     public void PlayMusicAtPath(string path, float volume = 1)
     {
         AudioClip newClip = Resources.Load<AudioClip>(path);
-        _musicSource.clip = newClip;
-        _musicSource.volume = volume;
-        _musicSource.Play();
+        if (_musicSource.clip != newClip)
+        {
+            _musicSource.volume = volume;
+            _musicSource.clip = newClip;
+            _musicSource.Play();
+        }
     }
 
     public void PlayAtPath(string path, float volume = 1, float randomness = 0f, float delay = 0, string category = "none")

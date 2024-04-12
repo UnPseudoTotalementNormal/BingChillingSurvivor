@@ -18,6 +18,7 @@ public class TextBoxManager : MonoBehaviour
     private float _textTimer = 0;
 
     private bool _finishedTalking = false; public bool FinishedTalking { get { return _finishedTalking; } }
+    private bool _waitingForNextLine = false; public bool WaitingForNextLine { get {  return _waitingForNextLine; } }
 
     private void Awake()
     {
@@ -38,9 +39,16 @@ public class TextBoxManager : MonoBehaviour
             _finishedTalking = false;
             _textTimer += Time.deltaTime;
 
-            if (_textTimer >= _timeBeforeNextChar)
+            if (_textTimer >= _timeBeforeNextChar && !_waitingForNextLine)
             {
-                if (_currentMainText[_currentMainTextIndex] == '[' || _currentMainText[_currentMainTextIndex] == '<')
+                if (_currentMainText[_currentMainTextIndex] == '|')
+                {
+                    _currentMainTextIndex += 1;
+                    _waitingForNextLine = true;
+                    return;
+                }
+
+                if (_currentMainText[_currentMainTextIndex] == '[' || _currentMainText[_currentMainTextIndex] == '<') //TODO '<' should write letters
                 {
                     string order = "";
                     for (int i = _currentMainTextIndex + 1; i < _currentMainText.Length; i++)
@@ -72,7 +80,7 @@ public class TextBoxManager : MonoBehaviour
 
                     _textTimer = 0;
 
-                    if (SoundManager.Instance.CategoryPlayingCount("Ramble") <= 0)
+                    if (SoundManager.Instance.CategoryPlayingCount("Ramble") <= 0 && StoryManager.Instance.CurrentObject.Character.RambleSounds.Count > 0)
                     {
                         List<AudioClip> rambles = StoryManager.Instance.CurrentObject.Character.RambleSounds;
                         CustomSound sound = new CustomSound();
@@ -88,9 +96,17 @@ public class TextBoxManager : MonoBehaviour
 
     public void FinishTalking()
     {
-        while(!_finishedTalking)
+        if (!_waitingForNextLine)
         {
-            UpdateTalk(true);
+            while (!_finishedTalking && !_waitingForNextLine)
+            {
+                UpdateTalk(true);
+            }
+        }
+        else
+        {
+            _mainText.text = "";
+            _waitingForNextLine = false;
         }
     }
 
@@ -100,6 +116,11 @@ public class TextBoxManager : MonoBehaviour
         _mainText.text = "";
         _currentMainText = text;
         _currentMainTextIndex = 0;
+    }
+
+    public void SetAuthor(string author)
+    {
+        _authorText.text = author + ":";
     }
 
     public void SendOrder(string order)

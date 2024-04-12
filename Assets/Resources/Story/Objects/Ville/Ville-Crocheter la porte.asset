@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 216d7b199d83e8847b169c9f90e3acd8, type: 3}
-  m_Name: Intro
+  m_Name: Ville-Crocheter la porte
   m_EditorClassIdentifier: 
-  Character: {fileID: 11400000, guid: e9d19d76e3be8344fb7be6475c696264, type: 2}
+  Character: {fileID: 11400000, guid: c43678aa1637dde4e94badc713125e3c, type: 2}
   Items: []
-  StoryText: zao eeee bong [SFX=bingchilling, 0.5, Ramble, Ramble]bing chilling ejejejefoefiefj
-    eeee taiwan is not a real country +1000000 social credit, ching chong hanji,
-    [SFX=bingchilling, 0.5, Ramble, Ramble]bing chilling
+  StoryText: "[CHARACTER=MC]Je sais crocheter un verrou simple, la police ne saura
+    pas qu'on est pass\xE9 par l\xE0\n|[CHARACTER=Tim]Et \xE7a prendra du temps ?\n|[CHARACTER=MC]Normalement
+    \xE7a devrait aller"
   CanBeSkipped: 1
   HasChoices: 0
   Choices: []
   ChoicesText: []
   ChoicesConditions: []
   ChoicesItemChange: []
-  NextStory: {fileID: 11400000, guid: 356a3ee4dd5db0d41ad738702de60de3, type: 2}
+  NextStory: {fileID: 11400000, guid: 236833efb4e7ebb49b1e31824d307fec, type: 2}
   CanClickToNext: 1
   NextAutomatically: 0
   NextStoryInSeconds: 2

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class StoryManager : MonoBehaviour
 {
     public static StoryManager Instance;
     [SerializeField] private StoryObject _currentObject; public StoryObject CurrentObject {  get { return _currentObject; } }
+    [SerializeField] private StoryCharacter _currentCharacter; public StoryCharacter CurrentCharacter { get { return _currentCharacter; } }
     [SerializeField] private GameObject _buttonPrefab;
 
     [SerializeField] private Transform _choicesParent;
@@ -138,7 +140,10 @@ public class StoryManager : MonoBehaviour
         }
         else
         {
-            TextBoxManager.Instance.FinishTalking();
+            if (_currentObject.CanBeSkipped || TextBoxManager.Instance.WaitingForNextLine) 
+            {
+                TextBoxManager.Instance.FinishTalking();
+            }
         }
     }
 
@@ -198,6 +203,13 @@ public class StoryManager : MonoBehaviour
                     ItemFeedbackManager.Instance.SendFeedback(currentItem + ": " + (StoryItems[currentItem] / itemQuantity));
                     StoryItems[currentItem] /= itemQuantity;
                     break;
+                case "=":
+                    ItemFeedbackManager.Instance.SendFeedback(currentItem + ": " + (itemQuantity));
+                    StoryItems[currentItem] = itemQuantity;
+                    break;
+                default:
+                    Debug.LogWarning("ITEM OPERATOR NOT VALID");
+                    break;
             }
         }
     }
@@ -242,6 +254,12 @@ public class StoryManager : MonoBehaviour
         _currentObject = _currentObject.NextStory;
         ReadStoryObject();
     }
+
+    public void RefreshCharacter()
+    {
+        if (_currentCharacter.CharacterSprite) _characterImage.sprite = _currentCharacter.CharacterSprite;
+        TextBoxManager.Instance.SetAuthor(_currentCharacter.FirstName);
+    }
     
     public void ReceiveOrder(string order)
     {
@@ -279,7 +297,7 @@ public class StoryManager : MonoBehaviour
 
             SoundManager.Instance.PlayMusicAtPath("MUSIC/" + order, volume);
         }
-        if (order.Contains("STORYOBJECT="))
+        if (order.Contains("STORYOBJECT=")) //PATH
         {
             order = order.Replace("STORYOBJECT=", "");
 
@@ -287,6 +305,51 @@ public class StoryManager : MonoBehaviour
 
             _currentObject = Resources.Load<StoryObject>("Story/Objects/" + order);
             ReadStoryObject();
+        }
+        if (order.Contains("CHARACTER=")) //PATH
+        {
+            order = order.Replace("CHARACTER=", "");
+
+            order = RemoveAllArgumentsInOrder(order);
+
+            _currentCharacter = Resources.Load<StoryCharacter>("Story/Characters/" + order);
+
+            RefreshCharacter();
+        }
+        if (order.Contains("GIVEITEM=")) //PATH, QUANTITY = 1
+        {
+            order = order.Replace("GIVEITEM=", "");
+
+            int quantity = 1;
+
+            if (OrderHasArgument(order)) quantity = int.Parse(GetFirstArgumentInOrder(order).Replace(".", ",")); order = RemoveFirstArgumentInOrder(order);
+            order = RemoveAllArgumentsInOrder(order);
+
+            if (!StoryItems.ContainsKey(order))
+            {
+                StoryItems[order] = 0;
+            }
+
+            ItemFeedbackManager.Instance.SendFeedback(order + ": " + (StoryItems[order] + quantity));
+            StoryItems[order] += quantity;
+        }
+        if (order.Contains("ITEMRESET="))
+        {
+            order = order.Replace("ITEMRESET=", "");
+
+            order = RemoveAllArgumentsInOrder(order);
+
+            Dictionary<string, int>.KeyCollection itemsKeys = StoryItems.Keys;
+
+            foreach(string key in itemsKeys.ToList())
+            {
+                if (!key.Contains("Connaissance"))
+                {
+                    StoryItems[key] = 0;
+                }
+            }
+
+            ItemFeedbackManager.Instance.SendFeedback("Les items sont reset");
         }
     }
 

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216d7b199d83e8847b169c9f90e3acd8, type: 3}
+  m_Name: Ville-Se cacher dans le batiment
+  m_EditorClassIdentifier: 
+  Character: {fileID: 11400000, guid: c43678aa1637dde4e94badc713125e3c, type: 2}
+  Items: []
+  StoryText: "Vous restez cach\xE9 un moment dans le batiment."
+  CanBeSkipped: 1
+  HasChoices: 1
+  Choices:
+  - {fileID: 11400000, guid: 4975ff24eddbfb04d9f275e654da86e0, type: 2}
+  - {fileID: 11400000, guid: 8433cb012d0512f42b19b7828a202082, type: 2}
+  ChoicesText:
+  - Il ne vous fait pas confiance
+  - Il vous fait confiance
+  ChoicesConditions:
+  - conditions:
+    - Confiance, <, 1
+  - conditions:
+    - Confiance, >, 0
+  ChoicesItemChange: []
+  NextStory: {fileID: 0}
+  CanClickToNext: 1
+  NextAutomatically: 0
+  NextStoryInSeconds: 2
+  WaitForFinishedTalking: 1
+  PlayVideo: 0
+  VideoClip: {fileID: 0}
+  Music: {fileID: 0}

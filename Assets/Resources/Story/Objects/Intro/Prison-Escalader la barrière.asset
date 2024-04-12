@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216d7b199d83e8847b169c9f90e3acd8, type: 3}
+  m_Name: "Prison-Escalader la barri\xE8re"
+  m_EditorClassIdentifier: 
+  Character: {fileID: 11400000, guid: c43678aa1637dde4e94badc713125e3c, type: 2}
+  Items: []
+  StoryText: "Vous essayez de grimper, et apr\xE8s plusieurs tentatives \xE9chou\xE9
+    vous arrivez enfin a vous \xE9chapper.\r\nMalheureusement les gardes ont remarqu\xE9
+    votre pr\xE9sence.\n|[CHARACTER=Tim]Merde! Cours!\n|[CHARACTER=Narrator]Vous
+    courrez jusqu'\xE0 atteindre un batiment et cassez la porte pour vous cacher
+    dedans."
+  CanBeSkipped: 1
+  HasChoices: 0
+  Choices: []
+  ChoicesText: []
+  ChoicesConditions: []
+  ChoicesItemChange: []
+  NextStory: {fileID: 11400000, guid: 4e5d590a097e2a74cb2e16c58a54f435, type: 2}
+  CanClickToNext: 1
+  NextAutomatically: 0
+  NextStoryInSeconds: 2
+  WaitForFinishedTalking: 1
+  PlayVideo: 0
+  VideoClip: {fileID: 0}
+  Music: {fileID: 0}

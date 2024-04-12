@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216d7b199d83e8847b169c9f90e3acd8, type: 3}
+  m_Name: Introduction
+  m_EditorClassIdentifier: 
+  Character: {fileID: 11400000, guid: c43678aa1637dde4e94badc713125e3c, type: 2}
+  Items: []
+  StoryText: "Vous avez \xE9t\xE9 condamn\xE9 \xE0 la peine de mort, vous entrez
+    pour la premi\xE8re fois dans votre cellule bien conscient que ce sera votre
+    derni\xE8re demeure.\r\nVous rencontrez aussi votre voisin de cellule avec qui
+    vous serez enchain\xE9 pendant l'entieret\xE9 de votre s\xE9jour."
+  CanBeSkipped: 1
+  HasChoices: 1
+  Choices:
+  - {fileID: 11400000, guid: a9c3752b6cceba94985415cee1bd32d4, type: 2}
+  - {fileID: 11400000, guid: b8aa96f69713c0245a31fd0d7699d6d2, type: 2}
+  ChoicesText:
+  - L'ignorer
+  - Lui dire bonjour
+  ChoicesConditions: []
+  ChoicesItemChange: []
+  NextStory: {fileID: 0}
+  CanClickToNext: 1
+  NextAutomatically: 0
+  NextStoryInSeconds: 2
+  WaitForFinishedTalking: 1
+  PlayVideo: 0
+  VideoClip: {fileID: 0}
+  Music: {fileID: 0}

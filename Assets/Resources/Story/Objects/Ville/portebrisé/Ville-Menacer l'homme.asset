@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216d7b199d83e8847b169c9f90e3acd8, type: 3}
+  m_Name: Ville-Menacer l'homme
+  m_EditorClassIdentifier: 
+  Character: {fileID: 11400000, guid: c43678aa1637dde4e94badc713125e3c, type: 2}
+  Items: []
+  StoryText: "Vous poussez l'homme et le bloquez contre le mur\n|[CHARACTER=MC]Si
+    tu fais un bruit on h\xE9sitera pas \xE0 s'en prendre \xE0 toi donc ne tente
+    rien.\n|[CHARACTER=Narrator]L'homme a l'air d'\xEAtre sous le choc, pris de panique,
+    il vous pousse puis commence \xE0 courir, votre ami cependant a r\xE9agis assez
+    vite et parviens \xE0 le maitriser et le tuer avant qu'il n'alerte qui que ce
+    soit.\n|[CHARACTER=MC]T'\xE9tait pas oblig\xE9 d'aller aussi loin !\n|[CHARACTER=Tim]J'\xE9tais
+    sens\xE9 prendre le risque qu'il raconte a quelqu'un qu'il nous a vue ?\n|[CHARACTER=Narrator]Il
+    soupire avant de rentrer dans la cachette avec vous en emportant aussi le cadavre.\r\nVous
+    remarquez que dans les outils rang\xE9 ici, il y a une scie qui vous permetterais
+    de couper cette chaine, ce que vous fa\xEEtes imm\xE9diatement\n|[CHARACTER=Tim]Bon
+    aller, moi j'y vais, tu me suis si tu veux mais je ne t'attendrais pas"
+  CanBeSkipped: 1
+  HasChoices: 1
+  Choices:
+  - {fileID: 0}
+  - {fileID: 0}
+  ChoicesText: []
+  ChoicesConditions: []
+  ChoicesItemChange: []
+  NextStory: {fileID: 0}
+  CanClickToNext: 1
+  NextAutomatically: 0
+  NextStoryInSeconds: 2
+  WaitForFinishedTalking: 1
+  Background: {fileID: 0}
+  PlayVideo: 0
+  VideoClip: {fileID: 0}
+  Music: {fileID: 0}

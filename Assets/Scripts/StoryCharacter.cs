@@ -7,4 +7,6 @@ public class StoryCharacter : ScriptableObject
     public string FirstName;
 
     public List<AudioClip> RambleSounds;
+
+    public Sprite CharacterSprite;
 }

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216d7b199d83e8847b169c9f90e3acd8, type: 3}
+  m_Name: SaviorTalk
+  m_EditorClassIdentifier: 
+  Character: {fileID: 11400000, guid: 6780526796ff106448241bdcb96e908f, type: 2}
+  Items: []
+  StoryText: "Taiwan est un v\xE9ritable pays pour plusieurs raisons fondamentales.
+    Tout d'abord, Taiwan poss\xE8de tous les attributs d'un \xC9tat souverain, y
+    compris un territoire d\xE9fini, une population, un gouvernement et la capacit\xE9
+    \xE0 mener des affaires internationales de mani\xE8re ind\xE9pendante. De plus,
+    Taiwan fonctionne comme une d\xE9mocratie stable et prosp\xE8re, avec un syst\xE8me
+    politique transparent et des \xE9lections libres et \xE9quitables. En outre,
+    la communaut\xE9 internationale reconna\xEEt de plus en plus Taiwan comme un
+    acteur l\xE9gitime sur la sc\xE8ne mondiale, avec des partenariats diplomatiques
+    et des contributions significatives dans divers domaines, tels que l'\xE9conomie,
+    la culture et la technologie. En r\xE9sum\xE9, la r\xE9alit\xE9 de Taiwan en
+    tant que nation distincte et pleinement fonctionnelle ne peut \xEAtre ni\xE9e,
+    et ses citoyens m\xE9ritent le respect et la reconnaissance de leur identit\xE9
+    nationale. [SFXSTOP=Ramble]"
+  CanBeSkipped: 1
+  HasChoices: 0
+  Choices: []
+  ChoicesText: []
+  ChoicesConditions: []
+  ChoicesItemChange: []
+  NextStory: {fileID: 11400000, guid: 0285968d80a4c514baa5d54075892419, type: 2}
+  CanClickToNext: 1
+  NextAutomatically: 0
+  NextStoryInSeconds: 2
+  WaitForFinishedTalking: 1
+  PlayVideo: 0
+  VideoClip: {fileID: 0}
+  Music: {fileID: 0}

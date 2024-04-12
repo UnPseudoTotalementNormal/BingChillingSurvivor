@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216d7b199d83e8847b169c9f90e3acd8, type: 3}
+  m_Name: SaviorVideo
+  m_EditorClassIdentifier: 
+  Character: {fileID: 11400000, guid: 6780526796ff106448241bdcb96e908f, type: 2}
+  Items: []
+  StoryText: 
+  CanBeSkipped: 1
+  HasChoices: 0
+  Choices: []
+  ChoicesText: []
+  ChoicesConditions: []
+  ChoicesItemChange: []
+  NextStory: {fileID: 11400000, guid: ab718247fcaad534ab8e62caabb3eace, type: 2}
+  CanClickToNext: 0
+  NextAutomatically: 0
+  NextStoryInSeconds: 2
+  WaitForFinishedTalking: 1
+  PlayVideo: 1
+  VideoClip: {fileID: 32900000, guid: 087822b800a18054bbdcfaa24085bb5b, type: 3}
+  Music: {fileID: 0}

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216d7b199d83e8847b169c9f90e3acd8, type: 3}
+  m_Name: "Ville-Cach\xE9 dans la cachette"
+  m_EditorClassIdentifier: 
+  Character: {fileID: 11400000, guid: 910823605db29534189095e9d1ea2c9d, type: 2}
+  Items: []
+  StoryText: "Suis moi !\n|[CHARACTER=Narrator]Vous courrez tant bien que mal jusqu'\xE0
+    la cachette que vous avez remarqu\xE9 dans votre vie pr\xE9cedente, vous ouvrez
+    la cachette et surprenez l'homme qui y \xE9tait cach\xE9.\n|[CHARACTER=HommeCach\xE9]Ne
+    me fa\xEEtes pas de mal !\n"
+  CanBeSkipped: 1
+  HasChoices: 1
+  Choices:
+  - {fileID: 11400000, guid: c82d1cc32c79a324396c977dca113719, type: 2}
+  - {fileID: 11400000, guid: 559c18d65ba7f3846b00c6325fdc5865, type: 2}
+  ChoicesText:
+  - Menacer l'homme
+  - Rassurer l'homme
+  ChoicesConditions: []
+  ChoicesItemChange: []
+  NextStory: {fileID: 0}
+  CanClickToNext: 1
+  NextAutomatically: 0
+  NextStoryInSeconds: 2
+  WaitForFinishedTalking: 1
+  Background: {fileID: 21300000, guid: b5eed41cc48e1cf469f50e0bcc916c65, type: 3}
+  PlayVideo: 0
+  VideoClip: {fileID: 0}
+  Music: {fileID: 0}

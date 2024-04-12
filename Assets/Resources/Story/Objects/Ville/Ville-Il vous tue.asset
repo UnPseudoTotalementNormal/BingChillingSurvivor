@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216d7b199d83e8847b169c9f90e3acd8, type: 3}
+  m_Name: Ville-Il vous tue
+  m_EditorClassIdentifier: 
+  Character: {fileID: 11400000, guid: c43678aa1637dde4e94badc713125e3c, type: 2}
+  Items:
+  - 'Connaissance: trahison, =, 1'
+  StoryText: "Alors que vous essayez de vous cacher et d'\xEAtre attentif a toute
+    arriv\xE9e \xE9ventuelle de la police votre ami d\xE9cide de vous planter l'outil
+    qu'il a r\xE9cup\xE9r\xE9 pr\xE9c\xE9dement.\r\nDans vos dernier moment de conscience
+    vous sentez votre pied se faire d\xE9couper."
+  CanBeSkipped: 1
+  HasChoices: 0
+  Choices: []
+  ChoicesText: []
+  ChoicesConditions: []
+  ChoicesItemChange: []
+  NextStory: {fileID: 11400000, guid: 6d4cd3a040af15c40a7a2eb840f33cd6, type: 2}
+  CanClickToNext: 1
+  NextAutomatically: 0
+  NextStoryInSeconds: 2
+  WaitForFinishedTalking: 1
+  Background: {fileID: 0}
+  PlayVideo: 0
+  VideoClip: {fileID: 0}
+  Music: {fileID: 0}

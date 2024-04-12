@@ -12,13 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216d7b199d83e8847b169c9f90e3acd8, type: 3}
   m_Name: "Ville-Prevenir de l'arriv\xE9e de la police"
   m_EditorClassIdentifier: 
-  Character: {fileID: 0}
+  Character: {fileID: 11400000, guid: 910823605db29534189095e9d1ea2c9d, type: 2}
   Items: []
-  StoryText: 
+  StoryText: "Deux flics vont arriver par la porte de derri\xE8re, il va falloir
+    qu'on agisse vite pour arriver \xE0 les mettre KO\n|[CHARACTER=Tim]Comment tu
+    sais \xE7a ? Tu les a entendu ?"
   CanBeSkipped: 1
-  HasChoices: 0
-  Choices: []
-  ChoicesText: []
+  HasChoices: 1
+  Choices:
+  - {fileID: 11400000, guid: 8f7a75ed8bc25ac45931b7d602099e4b, type: 2}
+  - {fileID: 11400000, guid: e0e05961339620f4f9d2dae49a311774, type: 2}
+  ChoicesText:
+  - Oui
+  - Hausser le ton
   ChoicesConditions: []
   ChoicesItemChange: []
   NextStory: {fileID: 0}
@@ -26,6 +32,7 @@ MonoBehaviour:
   NextAutomatically: 0
   NextStoryInSeconds: 2
   WaitForFinishedTalking: 1
+  Background: {fileID: 0}
   PlayVideo: 0
   VideoClip: {fileID: 0}
   Music: {fileID: 0}

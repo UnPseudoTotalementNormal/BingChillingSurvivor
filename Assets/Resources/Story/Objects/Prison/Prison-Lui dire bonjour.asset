@@ -20,8 +20,8 @@ MonoBehaviour:
   CanBeSkipped: 1
   HasChoices: 1
   Choices:
-  - {fileID: 11400000, guid: 1b0cee393a158fb41a3cfe635bdf6bcb, type: 2}
-  - {fileID: 11400000, guid: d8365d165870e98488ce68572c1af100, type: 2}
+  - {fileID: 11400000, guid: 15132ee0d98e4c540b8d3d9cc6a68f01, type: 2}
+  - {fileID: 11400000, guid: 1145526e24c4ebd4ebc5581236501752, type: 2}
   ChoicesText:
   - Aller se coucher
   - "Lui demander pourquoi il est l\xE0"
@@ -32,6 +32,7 @@ MonoBehaviour:
   NextAutomatically: 0
   NextStoryInSeconds: 2
   WaitForFinishedTalking: 1
+  Background: {fileID: 0}
   PlayVideo: 0
   VideoClip: {fileID: 0}
   Music: {fileID: 0}

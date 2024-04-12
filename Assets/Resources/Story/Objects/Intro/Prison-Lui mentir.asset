@@ -23,7 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 62996865d803750478e136b8c59d9251, type: 2}
   ChoicesText:
   - "Dire la v\xE9rit\xE9"
-  - Beauoup de gens
+  - Beaucoup de gens
   ChoicesConditions: []
   ChoicesItemChange: []
   NextStory: {fileID: 0}
@@ -31,6 +31,7 @@ MonoBehaviour:
   NextAutomatically: 0
   NextStoryInSeconds: 2
   WaitForFinishedTalking: 1
+  Background: {fileID: 0}
   PlayVideo: 0
   VideoClip: {fileID: 0}
   Music: {fileID: 0}

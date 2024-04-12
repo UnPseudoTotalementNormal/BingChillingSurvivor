@@ -20,20 +20,27 @@ MonoBehaviour:
   Choices:
   - {fileID: 11400000, guid: 4975ff24eddbfb04d9f275e654da86e0, type: 2}
   - {fileID: 11400000, guid: 8433cb012d0512f42b19b7828a202082, type: 2}
+  - {fileID: 11400000, guid: ac8a550f74e966540b2a55f085104de8, type: 2}
   ChoicesText:
   - Il ne vous fait pas confiance
   - Il vous fait confiance
+  - "Le pr\xE9venir de la police"
   ChoicesConditions:
   - conditions:
     - Confiance, <, 1
   - conditions:
     - Confiance, >, 0
+    - "Connaissance: arriv\xE9e de la police, <, 1"
+  - conditions:
+    - Confiance, >, 0
+    - "Connaissance: arriv\xE9e de la police, >, 0"
   ChoicesItemChange: []
   NextStory: {fileID: 0}
   CanClickToNext: 1
   NextAutomatically: 0
   NextStoryInSeconds: 2
   WaitForFinishedTalking: 1
+  Background: {fileID: 0}
   PlayVideo: 0
   VideoClip: {fileID: 0}
   Music: {fileID: 0}

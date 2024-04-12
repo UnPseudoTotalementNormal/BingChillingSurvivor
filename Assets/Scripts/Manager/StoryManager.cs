@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StoryManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class StoryManager : MonoBehaviour
 
     [SerializeField] private Transform _choicesParent;
     [SerializeField] private Image _characterImage;
+    [SerializeField] private Image _backgroundImage;
 
     private Coroutine _goToNextAutomaticallyCoroutine;
 
@@ -153,6 +155,11 @@ public class StoryManager : MonoBehaviour
         TextBoxManager.Instance.SetText(_currentObject.StoryText, _currentObject.Character.FirstName);
         if (_currentObject.Character.CharacterSprite) _characterImage.sprite = _currentObject.Character.CharacterSprite;
         ReadStoryItems(_currentObject.Items);
+
+        if (_currentObject.Background)
+        {
+            _backgroundImage.sprite = _currentObject.Background;
+        }
 
         if (_currentObject.PlayVideo && _currentObject.VideoClip) //video
         {
@@ -350,6 +357,10 @@ public class StoryManager : MonoBehaviour
             }
 
             ItemFeedbackManager.Instance.SendFeedback("Les items sont reset");
+        }
+        if (order.Contains("ENDGAME="))
+        {
+            SceneManager.LoadScene(0);
         }
     }
 

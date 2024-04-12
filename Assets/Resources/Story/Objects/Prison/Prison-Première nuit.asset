@@ -20,8 +20,8 @@ MonoBehaviour:
   CanBeSkipped: 1
   HasChoices: 1
   Choices:
-  - {fileID: 11400000, guid: bc50ee03a4e53f7448871818b17b4059, type: 2}
-  - {fileID: 11400000, guid: d63bab6575aeb154797c057d2ad31f1e, type: 2}
+  - {fileID: 11400000, guid: 268fab6c8bd978e47b9686f23a2b5a9d, type: 2}
+  - {fileID: 11400000, guid: b05354976bf0fc245ba023ea38bd8869, type: 2}
   ChoicesText:
   - Faire semblant de dormir
   - "Se r\xE9veiller"
@@ -32,6 +32,7 @@ MonoBehaviour:
   NextAutomatically: 0
   NextStoryInSeconds: 2
   WaitForFinishedTalking: 1
+  Background: {fileID: 0}
   PlayVideo: 0
   VideoClip: {fileID: 0}
   Music: {fileID: 0}

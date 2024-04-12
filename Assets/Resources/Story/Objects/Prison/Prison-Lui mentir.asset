@@ -19,11 +19,11 @@ MonoBehaviour:
   CanBeSkipped: 1
   HasChoices: 1
   Choices:
-  - {fileID: 11400000, guid: 49ea10813dca2a4448dbc7c37a0f6ec1, type: 2}
-  - {fileID: 11400000, guid: 62996865d803750478e136b8c59d9251, type: 2}
+  - {fileID: 11400000, guid: df7f7ea0c1b43ed46928cb3264f36390, type: 2}
+  - {fileID: 11400000, guid: 7260936b7a6c4924b912525c8bd9369a, type: 2}
   ChoicesText:
   - "Dire la v\xE9rit\xE9"
-  - Beauoup de gens
+  - Beaucoup de gens
   ChoicesConditions: []
   ChoicesItemChange: []
   NextStory: {fileID: 0}
@@ -31,6 +31,7 @@ MonoBehaviour:
   NextAutomatically: 0
   NextStoryInSeconds: 2
   WaitForFinishedTalking: 1
+  Background: {fileID: 0}
   PlayVideo: 0
   VideoClip: {fileID: 0}
   Music: {fileID: 0}

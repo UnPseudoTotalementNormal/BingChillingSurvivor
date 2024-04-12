@@ -30,6 +30,9 @@ public class StoryObject : ScriptableObject
     public float NextStoryInSeconds = 2;
     public bool WaitForFinishedTalking = true;
 
+    [Header("Image")]
+    public Sprite Background;
+
     [Header("Video")]
     [InspectorName("PlayVideo (will next on end)")] public bool PlayVideo = false;
     public VideoClip VideoClip;

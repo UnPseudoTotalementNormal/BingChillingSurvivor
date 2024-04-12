@@ -22,11 +22,12 @@ MonoBehaviour:
   ChoicesText: []
   ChoicesConditions: []
   ChoicesItemChange: []
-  NextStory: {fileID: 11400000, guid: 1b0cee393a158fb41a3cfe635bdf6bcb, type: 2}
+  NextStory: {fileID: 11400000, guid: 15132ee0d98e4c540b8d3d9cc6a68f01, type: 2}
   CanClickToNext: 1
   NextAutomatically: 0
   NextStoryInSeconds: 2
   WaitForFinishedTalking: 1
+  Background: {fileID: 0}
   PlayVideo: 0
   VideoClip: {fileID: 0}
   Music: {fileID: 0}
